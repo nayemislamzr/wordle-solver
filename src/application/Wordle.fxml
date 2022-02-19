@@ -180,11 +180,28 @@
       </VBox>
    </bottom>
    <left>
-      <VBox prefHeight="430.0" prefWidth="150.0" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" prefHeight="430.0" prefWidth="150.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER" prefHeight="33.0" prefWidth="150.0">
+            <HBox alignment="CENTER" prefHeight="33.0" prefWidth="150.0" stylesheets="@Wordle.css" VBox.vgrow="NEVER">
                <children>
-                  <Label alignment="CENTER" prefHeight="43.0" prefWidth="150.0" text="Possible Words">
+                  <Label alignment="CENTER" prefHeight="43.0" prefWidth="150.0" styleClass="side-title-text" stylesheets="@Wordle.css" text="Possible Words">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <VBox fx:id="possibleWords" prefHeight="389.0" prefWidth="150.0">
+               <VBox.margin>
+                  <Insets left="10.0" top="10.0" />
+               </VBox.margin>
+               <children>
+                  <HBox prefHeight="30.0" prefWidth="140.0" />
+               </children>
+            </VBox>
+            <HBox fx:id="totalPossibleWords" alignment="CENTER" prefHeight="33.0" prefWidth="150.0" stylesheets="@Wordle.css">
+               <children>
+                  <Label alignment="CENTER" prefHeight="43.0" prefWidth="150.0" styleClass="side-title-text" stylesheets="@Wordle.css" text="Total :">
                      <font>
                         <Font size="17.0" />
                      </font>
@@ -192,6 +209,23 @@
                </children>
             </HBox>
          </children>
+         <BorderPane.margin>
+            <Insets top="10.0" />
+         </BorderPane.margin>
       </VBox>
    </left>
+   <right>
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="150.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" prefHeight="43.0" prefWidth="150.0" styleClass="side-title-text" stylesheets="@Wordle.css" VBox.vgrow="NEVER">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+         </children>
+         <BorderPane.margin>
+            <Insets top="10.0" />
+         </BorderPane.margin>
+      </VBox>
+   </right>
 </BorderPane>

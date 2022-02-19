@@ -9,12 +9,15 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.util.Pair;
 
 public class View {
 	private final int totalKeys = 26;
 	private VBox fxGrid;
 	private VBox fxKeyBoard;
+	private VBox fxPossibleWords;
+	private HBox fxTotalPossibleWords;
 	private int maxRow, maxCol;
 	private final ArrayList<String> keyBoard;
 	private final BackgroundFill green = new BackgroundFill(Color.rgb(83, 141, 78), null, null);
@@ -30,6 +33,8 @@ public class View {
 		keyBoard.add("ZXCVBNM");
 		fxGrid = GUIController.getWordGrid();
 		fxKeyBoard = GUIController.getKeyBoard();
+		fxPossibleWords = GUIController.getPossibleWordContainer();
+		fxTotalPossibleWords = GUIController.getTotalPossibleWordContainer();
 	}
 
 	/*
@@ -105,5 +110,25 @@ public class View {
 				btn.setBackground(new Background(gray));
 			}
 		}
+	}
+	
+	public void showPossibleWords(ArrayList<String> possibleWords) {
+		fxPossibleWords.getChildren().clear();
+		for(String word : possibleWords) {
+			Label fxWord = new Label(word);
+			fxWord.setFont(new Font("Clear Sans",14));
+			fxWord.setTextFill(Color.WHITE);
+			HBox fxWordContainer = new HBox();
+			fxWordContainer.getChildren().add(fxWord);
+			fxPossibleWords.getChildren().add(fxWordContainer);
+		}
+	}
+	
+	public void showTotalPossibleWords(int totalPossibleWords) {
+		fxTotalPossibleWords.getChildren().clear();
+		Label label = new Label("Total : " + totalPossibleWords);
+		label.setFont(new Font("Oswald", 17));
+		label.setTextFill(Color.WHITE);
+		fxTotalPossibleWords.getChildren().add(label);
 	}
 }

@@ -1,3 +1,15 @@
+@font-face {
+	src: url('../../src/application/resource/fonts/ClearSans/ClearSansBold.ttf');
+}
+
+@font-face {
+	src: url('../../src/application/resource/fonts/ClearSans/ClearSansRegular.ttf');
+}
+
+@font-face {
+	src: url(../../src/application/resource/fonts/Oswald/Oswald.ttf);
+}
+
 * {
     -fx-green: #6aaa64;
     -fx-darkendGreen: #538d4e;
@@ -47,14 +59,27 @@
 }
 
 .title-text {
-	-fx-font: 27px "System";
+	-fx-font-size: 27px;
+	-fx-font-family: "Oswald";
 	-fx-text-fill: -fx-color-tone-1;
 	-fx-font-weight: bold;
 }
 
+.side-title {
+	-fx-border-style: hidden hidden solid hidden;
+	-fx-border-width: 1px;
+	-fx-border-color: -fx-color-tone-4;	
+}
+
+.side-title-text {
+	-fx-font: 17px "Oswald";
+	-fx-text-fill: -fx-color-tone-1;
+	-fx-font-weight: 600;
+}
+
 .grid-letter {
 	-fx-pref-height:60;
-	-fx-font: 27px "SansSerif Regular";
+	-fx-font: 27px "Clear Sans";
 	-fx-text-fill:white;
 	-fx-alignment:center;
 	-fx-background-color : -fx-color-tone-7;
