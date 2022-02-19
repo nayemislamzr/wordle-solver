@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="660.0" styleClass="night-mode" stylesheets="@Wordle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.GUIController">
+   <top>
+      <HBox alignment="CENTER" prefHeight="50.0" prefWidth="600.0" styleClass="title-bar" stylesheets="@Wordle.css" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="15.0" HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+               <children>
+                  <ImageView fitHeight="21.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resource/icons/white-menu.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </ImageView>
+                  <ImageView fitHeight="21.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resource/icons/ask-white.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox id="title-text" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="title_text" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label styleClass="title-text" stylesheets="@Wordle.css" text="Wordle">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="15.0" HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+               <children>
+                  <ImageView fitHeight="21.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resource/icons/stat-white.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </ImageView>
+                  <ImageView fitHeight="21.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resource/icons/settings-white.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <VBox fx:id="wordGrid" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="7.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER" prefHeight="60.0" prefWidth="500.0" spacing="7.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="50.0" prefWidth="61.0" styleClass="grid-letter" stylesheets="@Wordle.css" />
+                  <Label alignment="CENTER" prefHeight="50.0" prefWidth="61.0" styleClass="grid-letter" stylesheets="@Wordle.css" />
+                  <Label alignment="CENTER" prefHeight="50.0" prefWidth="61.0" styleClass="grid-letter" stylesheets="@Wordle.css" />
+                  <Label alignment="CENTER" prefHeight="50.0" prefWidth="61.0" styleClass="grid-letter" stylesheets="@Wordle.css" />
+                  <Label alignment="CENTER" prefHeight="50.0" prefWidth="61.0" styleClass="grid-letter" stylesheets="@Wordle.css" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="60.0" prefWidth="500.0" spacing="7.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="50.0" prefWidth="61.0" styleClass="grid-letter" stylesheets="@Wordle.css" />
+                  <Label alignment="CENTER" prefHeight="50.0" prefWidth="61.0" styleClass="grid-letter" stylesheets="@Wordle.css" />
+                  <Label alignment="CENTER" prefHeight="50.0" prefWidth="61.0" styleClass="grid-letter" stylesheets="@Wordle.css" />
+                  <Label alignment="CENTER" prefHeight="50.0" prefWidth="61.0" styleClass="grid-letter" stylesheets="@Wordle.css" />
+                  <Label alignment="CENTER" prefHeight="50.0" prefWidth="61.0" styleClass="grid-letter" stylesheets="@Wordle.css" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="60.0" prefWidth="500.0" spacing="7.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="50.0" prefWidth="61.0" styleClass="grid-letter" stylesheets="@Wordle.css" />
+                  <Label alignment="CENTER" prefHeight="50.0" prefWidth="61.0" styleClass="grid-letter" stylesheets="@Wordle.css" />
+                  <Label alignment="CENTER" prefHeight="50.0" prefWidth="61.0" styleClass="grid-letter" stylesheets="@Wordle.css" />
+                  <Label alignment="CENTER" prefHeight="50.0" prefWidth="61.0" styleClass="grid-letter" stylesheets="@Wordle.css" />
+                  <Label alignment="CENTER" prefHeight="50.0" prefWidth="61.0" styleClass="grid-letter" stylesheets="@Wordle.css" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="60.0" prefWidth="500.0" spacing="7.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="50.0" prefWidth="61.0" styleClass="grid-letter" stylesheets="@Wordle.css" />
+                  <Label alignment="CENTER" prefHeight="50.0" prefWidth="61.0" styleClass="grid-letter" stylesheets="@Wordle.css" />
+                  <Label alignment="CENTER" prefHeight="50.0" prefWidth="61.0" styleClass="grid-letter" stylesheets="@Wordle.css" />
+                  <Label alignment="CENTER" prefHeight="50.0" prefWidth="61.0" styleClass="grid-letter" stylesheets="@Wordle.css" />
+                  <Label alignment="CENTER" prefHeight="50.0" prefWidth="61.0" styleClass="grid-letter" stylesheets="@Wordle.css" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="60.0" prefWidth="500.0" spacing="7.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="50.0" prefWidth="61.0" styleClass="grid-letter" stylesheets="@Wordle.css" />
+                  <Label alignment="CENTER" prefHeight="50.0" prefWidth="61.0" styleClass="grid-letter" stylesheets="@Wordle.css" />
+                  <Label alignment="CENTER" prefHeight="50.0" prefWidth="61.0" styleClass="grid-letter" stylesheets="@Wordle.css" />
+                  <Label alignment="CENTER" prefHeight="50.0" prefWidth="61.0" styleClass="grid-letter" stylesheets="@Wordle.css" />
+                  <Label alignment="CENTER" prefHeight="50.0" prefWidth="61.0" styleClass="grid-letter" stylesheets="@Wordle.css" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="60.0" prefWidth="500.0" spacing="7.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="50.0" prefWidth="61.0" styleClass="grid-letter" stylesheets="@Wordle.css" />
+                  <Label alignment="CENTER" prefHeight="50.0" prefWidth="61.0" styleClass="grid-letter" stylesheets="@Wordle.css" />
+                  <Label alignment="CENTER" prefHeight="50.0" prefWidth="61.0" styleClass="grid-letter" stylesheets="@Wordle.css" />
+                  <Label alignment="CENTER" prefHeight="50.0" prefWidth="61.0" styleClass="grid-letter" stylesheets="@Wordle.css" />
+                  <Label alignment="CENTER" prefHeight="50.0" prefWidth="61.0" styleClass="grid-letter" stylesheets="@Wordle.css" />
+               </children>
+            </HBox>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <BorderPane.margin>
+            <Insets top="30.0" />
+         </BorderPane.margin>
+      </VBox>
+   </center>
+   <bottom>
+      <VBox fx:id="keyBoard" alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="7.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="473.0" spacing="7.0">
+               <children>
+                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="33.0" mnemonicParsing="false" onAction="#virtualKeyBoardHandler" prefHeight="50.0" prefWidth="33.0" styleClass="key-pad" stylesheets="@Wordle.css" text="Q" />
+                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="33.0" mnemonicParsing="false" onAction="#virtualKeyBoardHandler" prefHeight="50.0" prefWidth="33.0" styleClass="key-pad" stylesheets="@Wordle.css" text="W" />
+                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="33.0" mnemonicParsing="false" onAction="#virtualKeyBoardHandler" prefHeight="50.0" prefWidth="33.0" styleClass="key-pad" stylesheets="@Wordle.css" text="E" />
+                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="33.0" mnemonicParsing="false" onAction="#virtualKeyBoardHandler" prefHeight="50.0" prefWidth="33.0" styleClass="key-pad" stylesheets="@Wordle.css" text="R" />
+                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="33.0" mnemonicParsing="false" onAction="#virtualKeyBoardHandler" prefHeight="50.0" prefWidth="33.0" styleClass="key-pad" stylesheets="@Wordle.css" text="T" />
+                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="33.0" mnemonicParsing="false" onAction="#virtualKeyBoardHandler" prefHeight="50.0" prefWidth="33.0" styleClass="key-pad" stylesheets="@Wordle.css" text="Y" />
+                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="33.0" mnemonicParsing="false" onAction="#virtualKeyBoardHandler" prefHeight="50.0" prefWidth="33.0" styleClass="key-pad" stylesheets="@Wordle.css" text="U" />
+                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="33.0" mnemonicParsing="false" onAction="#virtualKeyBoardHandler" prefHeight="50.0" prefWidth="33.0" styleClass="key-pad" stylesheets="@Wordle.css" text="I" />
+                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="33.0" mnemonicParsing="false" onAction="#virtualKeyBoardHandler" prefHeight="50.0" prefWidth="33.0" styleClass="key-pad" stylesheets="@Wordle.css" text="O" />
+                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="33.0" mnemonicParsing="false" onAction="#virtualKeyBoardHandler" prefHeight="50.0" prefWidth="33.0" styleClass="key-pad" stylesheets="@Wordle.css" text="P" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="500.0" spacing="7.0">
+               <children>
+                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="33.0" mnemonicParsing="false" onAction="#virtualKeyBoardHandler" prefHeight="50.0" prefWidth="33.0" styleClass="key-pad" stylesheets="@Wordle.css" text="A" />
+                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="33.0" mnemonicParsing="false" onAction="#virtualKeyBoardHandler" prefHeight="50.0" prefWidth="33.0" styleClass="key-pad" stylesheets="@Wordle.css" text="S" />
+                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="33.0" mnemonicParsing="false" onAction="#virtualKeyBoardHandler" prefHeight="50.0" prefWidth="33.0" styleClass="key-pad" stylesheets="@Wordle.css" text="D" />
+                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="33.0" mnemonicParsing="false" onAction="#virtualKeyBoardHandler" prefHeight="50.0" prefWidth="33.0" styleClass="key-pad" stylesheets="@Wordle.css" text="F" />
+                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="33.0" mnemonicParsing="false" onAction="#virtualKeyBoardHandler" prefHeight="50.0" prefWidth="33.0" styleClass="key-pad" stylesheets="@Wordle.css" text="G" />
+                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="33.0" mnemonicParsing="false" onAction="#virtualKeyBoardHandler" prefHeight="50.0" prefWidth="33.0" styleClass="key-pad" stylesheets="@Wordle.css" text="H" />
+                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="33.0" mnemonicParsing="false" onAction="#virtualKeyBoardHandler" prefHeight="50.0" prefWidth="33.0" styleClass="key-pad" stylesheets="@Wordle.css" text="J" />
+                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="33.0" mnemonicParsing="false" onAction="#virtualKeyBoardHandler" prefHeight="50.0" prefWidth="33.0" styleClass="key-pad" stylesheets="@Wordle.css" text="K" />
+                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="33.0" mnemonicParsing="false" onAction="#virtualKeyBoardHandler" prefHeight="50.0" prefWidth="33.0" styleClass="key-pad" stylesheets="@Wordle.css" text="L" />
+               </children></HBox>
+            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="500.0" spacing="7.0">
+               <children>
+                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="33.0" mnemonicParsing="false" onAction="#virtualKeyBoardHandler" prefHeight="50.0" prefWidth="58.0" styleClass="key-pad" stylesheets="@Wordle.css" text="ENTER" />
+                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="33.0" mnemonicParsing="false" onAction="#virtualKeyBoardHandler" prefHeight="50.0" prefWidth="33.0" styleClass="key-pad" stylesheets="@Wordle.css" text="Z" />
+                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="33.0" mnemonicParsing="false" onAction="#virtualKeyBoardHandler" prefHeight="50.0" prefWidth="33.0" styleClass="key-pad" stylesheets="@Wordle.css" text="X" />
+                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="33.0" mnemonicParsing="false" onAction="#virtualKeyBoardHandler" prefHeight="50.0" prefWidth="33.0" styleClass="key-pad" stylesheets="@Wordle.css" text="C" />
+                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="33.0" mnemonicParsing="false" onAction="#virtualKeyBoardHandler" prefHeight="50.0" prefWidth="33.0" styleClass="key-pad" stylesheets="@Wordle.css" text="V" />
+                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="33.0" mnemonicParsing="false" onAction="#virtualKeyBoardHandler" prefHeight="50.0" prefWidth="33.0" styleClass="key-pad" stylesheets="@Wordle.css" text="B" />
+                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="33.0" mnemonicParsing="false" onAction="#virtualKeyBoardHandler" prefHeight="50.0" prefWidth="33.0" styleClass="key-pad" stylesheets="@Wordle.css" text="N" />
+                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="33.0" mnemonicParsing="false" onAction="#virtualKeyBoardHandler" prefHeight="50.0" prefWidth="33.0" styleClass="key-pad" stylesheets="@Wordle.css" text="M" />
+                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="33.0" mnemonicParsing="false" onAction="#virtualKeyBoardHandler" prefHeight="50.0" prefWidth="60.0" styleClass="key-pad" stylesheets="@Wordle.css" text="DELETE" />
+               </children></HBox>
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="20.0" />
+         </BorderPane.margin>
+      </VBox>
+   </bottom>
+</BorderPane>

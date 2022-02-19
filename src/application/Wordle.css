@@ -1,0 +1,75 @@
+* {
+    -fx-green: #6aaa64;
+    -fx-darkendGreen: #538d4e;
+    -fx-yellow: #c9b458;
+    -fx-darkendYellow: #b59f3b;
+    -fx-lightGray: #d8d8d8;
+    -fx-gray: #86888a;
+    -fx-darkGray: #939598;
+    -fx-white: #fff;
+    -fx-black: #212121;
+    -fx-orange: #f5793a;
+    -fx-blue: #85c0f9;
+    -fx-key-bg: #818384;
+    -fx-key-color: #ffffff;
+}
+
+.day-mode {
+	-fx-color-tone-1: #000000;
+    -fx-color-tone-2: #787c7e;
+    -fx-color-tone-3: #878a8c;
+    -fx-color-tone-4: #d3d6da;
+    -fx-color-tone-5: #edeff1;
+    -fx-color-tone-6: #f6f7f8;
+    -fx-color-tone-7: #ffffff;
+    -fx-color-nav-hover: #f4f4f4;	
+}
+
+.night-mode {
+	-fx-color-tone-1: #ffffff;
+    -fx-color-tone-2: #818384;
+    -fx-color-tone-3: #565758;
+    -fx-color-tone-4: #3a3a3c;
+    -fx-color-tone-5: #272729;
+    -fx-color-tone-6: #1a1a1b;
+    -fx-color-tone-7: #121213;
+    -fx-color-nav-hover: #2f2f31;
+}
+
+.root {
+	-fx-background-color: -fx-color-tone-7;
+}
+
+.title-bar {
+	-fx-border-style: hidden hidden solid hidden;
+	-fx-border-width: 2px;
+	-fx-border-color: -fx-color-tone-4;
+}
+
+.title-text {
+	-fx-font: 27px "System";
+	-fx-text-fill: -fx-color-tone-1;
+	-fx-font-weight: bold;
+}
+
+.grid-letter {
+	-fx-pref-height:60;
+	-fx-font: 27px "SansSerif Regular";
+	-fx-text-fill:white;
+	-fx-alignment:center;
+	-fx-background-color : -fx-color-tone-7;
+	-fx-border-style:solid solid solid solid;
+	-fx-border-width:1px;
+	-fx-border-color: -fx-color-tone-4;
+}
+
+.key-pad {
+	-fx-background-color: -fx-key-bg;
+	-fx-text-fill: -fx-key-color;
+	-fx-font-weight: bold;
+	-fx-background-radius: 5;
+}
+
+.key-pad:hover {
+	-fx-cursor: hand;
+}
