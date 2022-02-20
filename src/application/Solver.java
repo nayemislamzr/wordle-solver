@@ -17,14 +17,12 @@ class ScoreComparator implements Comparator<Pair<String, Integer>> {
 
 }
 
-class Solver {
-	private Set<Integer> blackLetters;
-	public ArrayList<Set<Integer>> grayLetters;
-	public ArrayList<Integer> whiteLetters;
-	private int wordLength;
+class Letters {
+	public Set<Integer> blackLetters; // NOT_MATCHED_IN_POSITON
+	public ArrayList<Set<Integer>> grayLetters; // MATCH_NOT_IN_POSITION
+	public ArrayList<Integer> whiteLetters; // MATCH_IN_POSITION
 
-	public Solver(int wordLen) {
-		wordLength = wordLen;
+	public Letters(int wordLength) {
 		blackLetters = new HashSet<Integer>();
 		grayLetters = new ArrayList<Set<Integer>>();
 		whiteLetters = new ArrayList<Integer>();
@@ -33,9 +31,19 @@ class Solver {
 			whiteLetters.add(-1);
 		}
 	}
+}
+
+class Solver {
+	private Letters letters;
+	private int wordLength;
+
+	public Solver(int wordLen) {
+		wordLength = wordLen;
+		letters = new Letters(wordLength);
+	}
 
 	public PriorityQueue<Pair<String, Integer>> getPossibleGuesses() {
-		ArrayList<String> possibleGuesses = Dictionary.search(blackLetters, grayLetters, whiteLetters, wordLength);
+		ArrayList<String> possibleGuesses = Dictionary.search(letters, wordLength);
 		System.out.println(possibleGuesses.size());
 		PriorityQueue<Pair<String, Integer>> wordsWithScore = new PriorityQueue<Pair<String, Integer>>(
 				new ScoreComparator());
@@ -46,7 +54,7 @@ class Solver {
 	}
 
 	public String guessMaxScore() {
-		ArrayList<String> possibleGuesses = Dictionary.search(blackLetters, grayLetters, whiteLetters, wordLength);
+		ArrayList<String> possibleGuesses = Dictionary.search(letters, wordLength);
 		String maxPossibleWord = new String();
 		int maxScore = Integer.MIN_VALUE;
 		for (String word : possibleGuesses) {
@@ -65,13 +73,28 @@ class Solver {
 	}
 
 	public void update(String guessedWord, Cell[] feedBack) {
+
 		for (int i = 0; i < feedBack.length; i++) {
-			if (feedBack[i] == Cell.NOT_MATCHED)
-				blackLetters.add(guessedWord.charAt(i) - 'A');
+
+			if (feedBack[i] == Cell.NOT_MATCHED) {
+				boolean hasAnyChance = false;
+				for (int j = 0; j < feedBack.length; j++) {
+					if (guessedWord.charAt(j) == guessedWord.charAt(i) && feedBack[j] == Cell.MATCHED_NOT_IN_LOCATION) {
+						hasAnyChance = true;
+						break;
+					}
+				}
+				if (hasAnyChance)
+					letters.grayLetters.get(i).add(guessedWord.charAt(i) - 'A');
+				else
+					letters.blackLetters.add(guessedWord.charAt(i) - 'A');
+			}
+
 			if (feedBack[i] == Cell.MATCHED_NOT_IN_LOCATION)
-				grayLetters.get(i).add(guessedWord.charAt(i) - 'A');
-			else if (feedBack[i] == Cell.MATCHED_IN_LOCATION)
-				whiteLetters.set(i, guessedWord.charAt(i) - 'A');
+				letters.grayLetters.get(i).add(guessedWord.charAt(i) - 'A');
+
+			if (feedBack[i] == Cell.MATCHED_IN_LOCATION)
+				letters.whiteLetters.set(i, guessedWord.charAt(i) - 'A');
 		}
 	}
 }

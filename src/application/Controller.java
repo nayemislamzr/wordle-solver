@@ -2,9 +2,11 @@ package application;
 
 import java.util.ArrayList;
 
+import javafx.util.Pair;
+
 public class Controller {
 	private static Controller controller;
-	ArrayList<String> possibleWords;
+	ArrayList<Pair<String,Integer>> possibleWords;
 	int totalPossibleWords;
 	private final int maxRow = 6;
 	private final int maxColumn = 5;

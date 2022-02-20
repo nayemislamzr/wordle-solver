@@ -5,8 +5,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.PriorityQueue;
 import java.util.Random;
-import java.util.Set;
+import java.util.Scanner;
 import java.util.Stack;
 
 import javafx.util.Pair;
@@ -75,8 +76,7 @@ class Trie {
 		return randomWord;
 	}
 
-	public static ArrayList<String> search(Trie node, Set<Integer> blackLetters, ArrayList<Set<Integer>> grayLetters,
-			ArrayList<Integer> whiteLetters, int wordLen) {
+	public static ArrayList<String> search(Trie node, Letters letters, int wordLen) {
 		Stack<Pair<Trie, String>> searchNode = new Stack<Pair<Trie, String>>();
 		ArrayList<String> possibleWords = new ArrayList<String>();
 		searchNode.add(new Pair<Trie, String>(node, new String()));
@@ -84,22 +84,22 @@ class Trie {
 			Trie currNode = searchNode.peek().getKey();
 			String wordSoFar = searchNode.peek().getValue();
 			searchNode.pop();
-			if(currNode == null) {
+			if (currNode == null) {
 				continue;
 			}
 			if (currNode.isEnd && wordSoFar.length() == wordLen) {
 				possibleWords.add(wordSoFar);
 				continue;
 			}
-			if (whiteLetters.get(wordSoFar.length()) != -1) {
-				int rightLetter = whiteLetters.get(wordSoFar.length());
+			if (letters.whiteLetters.get(wordSoFar.length()) != -1) {
+				int rightLetter = letters.whiteLetters.get(wordSoFar.length());
 				searchNode.add(
 						new Pair<Trie, String>(currNode.childs[rightLetter], wordSoFar + (char) (rightLetter + 'A')));
 				continue;
 			}
 			for (int child : currNode.directChild) {
-				if (blackLetters.contains(child) == false
-						&& grayLetters.get(wordSoFar.length()).contains(child) == false) {
+				if (letters.blackLetters.contains(child) == false
+						&& letters.grayLetters.get(wordSoFar.length()).contains(child) == false) {
 					searchNode.add(new Pair<Trie, String>(currNode.childs[child], wordSoFar + (char) (child + 'A')));
 				}
 			}
@@ -108,11 +108,9 @@ class Trie {
 	}
 }
 
-
-
 public class Dictionary {
 	private final static String filePath = "src/application/texts/dictionary.txt";
-	private static int[] score = new int[26];
+	private static int[][] frequency = new int[10][26];
 	private static Trie root;
 
 	private static Trie getRoot() {
@@ -124,21 +122,21 @@ public class Dictionary {
 	private static void add(String word) {
 
 		for (int i = 0; i < word.length(); i++) {
-			score[word.charAt(i) - 'A']++;
+			frequency[i][word.charAt(i) - 'A']++;
 		}
 
 		Trie node = getRoot();
 		Trie.insert(node, word);
 	}
 
-	public static int getScore(char c) {
-		return score[c - 'A'];
+	public static int getFrequency(int position, char c) {
+		return frequency[position][c - 'A'];
 	}
 
 	public static int getScore(String word) {
 		int score = 0;
 		for (int i = 0; i < word.length(); i++) {
-			score += getScore(word.charAt(i));
+			score += getFrequency(i, word.charAt(i));
 		}
 		return score;
 	}
@@ -167,61 +165,107 @@ public class Dictionary {
 		return (Trie.getRandomWord(node, wordLength));
 	}
 
-	public static ArrayList<String> search(Set<Integer> blackLetters, ArrayList<Set<Integer>> grayLetters,
-			ArrayList<Integer> whiteLetters, int wordLength) {
-		return Trie.search(getRoot(), blackLetters, grayLetters, whiteLetters, wordLength);
+	public static ArrayList<String> search(Letters letters, int wordLength) {
+		return Trie.search(getRoot(), letters, wordLength);
 	}
 
-//	public static void main(String[] args) {
-//		Dictionary.load();
-//		int[] result = new int[100];
-//		
-//		int tests = 10000;
-//
-//		for(int i = 0 ; i < tests ; i++) {
-//			Solver solver = new Solver(5);
-//			String guessedWord = Dictionary.getRandomWord(5);
-//			Matcher.setWord(guessedWord);
-//			int tries = 1;
-//			String word = new String();
-////			System.out.println(guessedWord);
-//			solver.update("CRANE");
-//			while(!(word = solver.guessMaxScore()).equals(guessedWord)) {
-//				++tries;
-////				System.out.println(tries + " : " + word);
-//				solver.update(word);
-//			}
-//			++result[tries];
-//		}
-//
-//		int success = 0;
-//		
-//		for(int i = 1 ; i <= 6 ; i++) {
-//			success+= result[i];
-//		}
-//		
-//		System.out.println(((double)success/(double)tests)*100);
-//		
-////		int tries = 0;
-////		Solver solver = new Solver(5);
-////		while (tries < 7) {
-////			Scanner in = new Scanner(System.in);
-////			String word = in.nextLine();
-////			Cell[] feedBack = new Cell[5];
-////			for (int i = 0; i < 5; i++) {
-////				int x = in.nextInt();
-////				if (x == 0)
-////					feedBack[i] = Cell.NOT_MATCHED;
-////				else if (x == 1)
-////					feedBack[i] = Cell.MATCHED_NOT_IN_LOCATION;
-////				else if (x == 2)
-////					feedBack[i] = Cell.MATCHED_IN_LOCATION;
-////			}
-////			solver.update(word, feedBack);
-////			word = solver.guessMaxScore();
-////			System.out.println(word);
-////			tries++;
-////		}
-//
-//	}
+	private static void checkRandomSuccessRate(int tests) {
+		int[] result = new int[100];
+
+		for (int i = 0; i < tests; i++) {
+			Solver solver = new Solver(5);
+			String guessedWord = Dictionary.getRandomWord(5);
+			Matcher.setWord(guessedWord);
+			int tries = 0;
+			String word = solver.guessMaxScore();
+			while (tries < 20 && !word.equals(guessedWord)) {
+				++tries;
+				solver.update(word);
+				word = solver.guessMaxScore();
+			}
+			++result[Math.max(1, tries)];
+		}
+
+		int success = 0;
+
+		for (int i = 1; i <= 6; i++) {
+			success += result[i];
+		}
+
+		System.out.println(((double) success / (double) tests) * 100);
+	}
+
+	private static void checkStressSuccessRate() {
+		Solver solver = new Solver(5);
+		PriorityQueue<Pair<String, Integer>> allWords = solver.getPossibleGuesses();
+		int tests = allWords.size();
+
+		int[] result = new int[100];
+		while (!allWords.isEmpty()) {
+			int tries = 0;
+			String randomWord = allWords.poll().getKey();
+			Matcher.setWord(randomWord);
+			Solver tempSolver = new Solver(5);
+			String word = tempSolver.guessMaxScore();
+			while (tries < 20 && !(word.equals(randomWord))) {
+				tries++;
+				tempSolver.update(word);
+				word = tempSolver.guessMaxScore();
+			}
+			result[Math.max(1, tries)]++;
+		}
+		
+		int success = 0;
+
+		for (int i = 1; i <= 6; i++) {
+			success += result[i];
+		}
+
+		System.out.println(((double) success / (double) tests) * 100);
+	}
+	
+	private static void runOnCLI() {
+		int tries = 0;
+		Solver solver = new Solver(5);
+		while (tries < 7) {
+			Scanner in = new Scanner(System.in);
+			String word = in.nextLine();
+			Cell[] feedBack = new Cell[5];
+			for (int i = 0; i < 5; i++) {
+				int x = in.nextInt();
+				if (x == 0)
+					feedBack[i] = Cell.NOT_MATCHED;
+				else if (x == 1)
+					feedBack[i] = Cell.MATCHED_NOT_IN_LOCATION;
+				else if (x == 2)
+					feedBack[i] = Cell.MATCHED_IN_LOCATION;
+			}
+			solver.update(word, feedBack);
+			word = solver.guessMaxScore();
+			System.out.println(word);
+			tries++;
+		}
+	}
+	
+	private static int runAgainstWord(String randomWord) {
+		Matcher.setWord(randomWord);
+		Solver tempSolver = new Solver(5);
+		String word = tempSolver.guessMaxScore();
+		int tries = 0;
+		while (!(word.equals(randomWord))) {
+			System.out.print(word + " ");
+			tries++;
+			tempSolver.update(word);
+			word = tempSolver.guessMaxScore();
+		}
+		return Math.max(1, tries);
+	}
+
+	public static void main(String[] args) {
+		Dictionary.load();
+//		Dictionary.checkRandomSuccessRate(1000);
+//		Dictionary.checkStressSuccessRate();
+//		Dictionary.runOnCLI();
+		Dictionary.runAgainstWord("PINKY");
+	}
 }

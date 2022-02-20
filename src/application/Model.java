@@ -15,7 +15,7 @@ public class Model {
 	private int maxWordLength;
 	private int currTotalPossibleWords;
 	private Solver solver;
-	private final int maxGuess = 10;
+	private final int maxGuess = 18;
 
 	public Model(int maxRow, int maxCol) {
 		this.maxRow = maxRow;
@@ -68,14 +68,16 @@ public class Model {
 		}
 	}
 
-	public ArrayList<String> getPossibleWords() {
+	public ArrayList<Pair<String,Integer>> getPossibleWords() {
 		PriorityQueue<Pair<String, Integer>> guesses = solver.getPossibleGuesses();
 		currTotalPossibleWords = guesses.size();
-		ArrayList<String> possibleWords = new ArrayList<>();
+		ArrayList<Pair<String,Integer>> possibleWords = new ArrayList<>();
 		int words = 0;
 		while (!guesses.isEmpty() && words < maxGuess) {
-			String currWord = guesses.poll().getKey();
-			possibleWords.add(currWord);
+			String currWord = guesses.peek().getKey();
+			int score = guesses.peek().getValue();
+			guesses.poll();
+			possibleWords.add(new Pair<String,Integer>(currWord,score));
 			words++;
 		}
 		return possibleWords;

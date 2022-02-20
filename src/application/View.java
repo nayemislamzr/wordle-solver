@@ -2,6 +2,7 @@ package application;
 
 import java.util.ArrayList;
 
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
@@ -112,14 +113,22 @@ public class View {
 		}
 	}
 	
-	public void showPossibleWords(ArrayList<String> possibleWords) {
+	public void showPossibleWords(ArrayList<Pair<String,Integer>> possibleWords) {
 		fxPossibleWords.getChildren().clear();
-		for(String word : possibleWords) {
-			Label fxWord = new Label(word);
+		for(Pair<String,Integer> word : possibleWords) {
+			Label fxWord = new Label(word.getKey());
+			Label fxScore = new Label(Integer.toString(word.getValue()));
 			fxWord.setFont(new Font("Clear Sans",14));
 			fxWord.setTextFill(Color.WHITE);
+			fxWord.setPrefWidth(90);
+			fxWord.setAlignment(Pos.CENTER_LEFT);
+			fxScore.setFont(new Font("Clear Sans",14));
+			fxScore.setTextFill(Color.WHITE);
+			fxScore.setPrefWidth(50);
+			fxScore.setAlignment(Pos.CENTER_RIGHT);
 			HBox fxWordContainer = new HBox();
 			fxWordContainer.getChildren().add(fxWord);
+			fxWordContainer.getChildren().add(fxScore);
 			fxPossibleWords.getChildren().add(fxWordContainer);
 		}
 	}
